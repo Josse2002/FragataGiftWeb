@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Fragata Gift</title>
+
+
+  <!-- BOOTSTRAP CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/flickity.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script  type = "module"  src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" > </script> 
+<script  nomodule  src = "https: // unpkg .com / ionicons @ 5.5.2 / dist / ionicons / ionicons.js " > </script>
+
+
+
+
+</head>
+
+<body>
+
+  <!--CREANDO EL CONTENEDOR-->
+  
+  <section id="wrapper">
+    <nav class="navbar navbar-expand-md">
+      <div class="container-fluid mx-2">
+        <div class="navbar-header">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="uil-bars text-white"></i>
+          </button>
+          <img src="imagenes/1630449230492.png" alt="">
+        </div>
+        <div class="icons">
+         
+
+            <a href="#"><ion-icon name="chatbox"></ion-icon></a>
+            <a href="#"><ion-icon name="build"></ion-icon></a>
+        </div>
+      </div>
+    </nav>
+  
+    <div class="p-4">
+      <div class="welcome">
+        <div class="content rounded-3 p-3">
+          <h1 class="fs-3">Bienvenidos a Fragata Gift</h1>
+          <p class="mb-0">Fragata gift te presenta las mejores ideas y creaciones en detalles exclusivos para cada momento u ocasión especial</p>
+        </div>
+      </div>
+  
+      <section class="statistics mt-4">
+        <div class="row">
+
+         
+
+         
+
+        </div>
+      </section>
+
+  
+      <section class="admins mt-4">
+      
+      </section>
+  
+      <section class="statis mt-4 text-center">
+        <div class="row navbar__icon">
+
+
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="box color-2 p-3">
+              <i class="uil-eye"></i>
+              <a href="#"><ion-icon name="cart"></ion-icon></a>
+              <p class="lead">Carrito</p>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="box color-1 p-3">
+              <i class="uil-user"></i>
+              <a href="#"><ion-icon name="heart"></ion-icon></a>
+              <p class="lead">Favoritos</p>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+            <div class="box color-2 p-3">
+              <i class="uil-shopping-cart"></i>
+              <a href="#"><ion-icon name="leaf"></ion-icon></a>
+              <p class="lead">Nosotros</p>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-3">
+            <div class="box color-1 p-3">
+              <i class="uil-feedback"></i>
+              <a href="#"><ion-icon name="person"></ion-icon></a>
+              <p class="lead">Inicio</p>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  
+<script>
+  // Other important pens.
+// Map: https://codepen.io/themustafaomar/pen/ZEGJeZq
+// Navbar: https://codepen.io/themustafaomar/pen/VKbQyZ
+
+'use strict'
+
+function $(selector) {
+  return document.querySelector(selector)
+}
+
+function find(el, selector) {
+  let finded
+  return (finded = el.querySelector(selector)) ? finded : null
+}
+
+function siblings(el) {
+  const siblings = []
+  for (let sibling of el.parentNode.children) {
+    if (sibling !== el) {
+      siblings.push(sibling)
+    }
+  }
+  return siblings
+}
+
+const showAsideBtn = $('.show-side-btn')
+const sidebar = $('.sidebar')
+const wrapper = $('#wrapper')
+
+showAsideBtn.addEventListener('click', function () {
+  $(`#${this.dataset.show}`).classList.toggle('show-sidebar')
+  wrapper.classList.toggle('fullwidth')
+})
+
+if (window.innerWidth < 767) {
+  sidebar.classList.add('show-sidebar');
+}
+
+window.addEventListener('resize', function () {
+  if (window.innerWidth > 767) {
+    sidebar.classList.remove('show-sidebar')
+  }
+})
+
+// dropdown menu in the side nav
+var slideNavDropdown = $('.sidebar-dropdown');
+
+$('.sidebar .categories').addEventListener('click', function (event) {
+  event.preventDefault()
+
+  const item = event.target.closest('.has-dropdown')
+
+  if (! item) {
+    return
+  }
+
+  item.classList.toggle('opened')
+
+  siblings(item).forEach(sibling => {
+    sibling.classList.remove('opened')
+  })
+
+  if (item.classList.contains('opened')) {
+    const toOpen = find(item, '.sidebar-dropdown')
+
+    if (toOpen) {
+      toOpen.classList.add('active')
+    }
+
+    siblings(item).forEach(sibling => {
+      const toClose = find(sibling, '.sidebar-dropdown')
+
+      if (toClose) {
+        toClose.classList.remove('active')
+      }
+    })
+  } else {
+    find(item, '.sidebar-dropdown').classList.toggle('active')
+  }
+})
+
+$('.sidebar .close-aside').addEventListener('click', function () {
+  $(`#${this.dataset.close}`).classList.add('show-sidebar')
+  wrapper.classList.remove('margin')
+})
+
+
+// Global defaults
+Chart.defaults.global.animation.duration = 2000; // Animation duration
+Chart.defaults.global.title.display = false; // Remove title
+Chart.defaults.global.defaultFontColor = '#71748c'; // Font color
+Chart.defaults.global.defaultFontSize = 13; // Font size for every label
+
+// Tooltip global resets
+Chart.defaults.global.tooltips.backgroundColor = '#111827'
+Chart.defaults.global.tooltips.borderColor = 'blue'
+
+// Gridlines global resets
+Chart.defaults.scale.gridLines.zeroLineColor = '#3b3d56'
+Chart.defaults.scale.gridLines.color = '#3b3d56'
+Chart.defaults.scale.gridLines.drawBorder = false
+
+// Legend global resets
+Chart.defaults.global.legend.labels.padding = 0;
+Chart.defaults.global.legend.display = false;
+
+// Ticks global resets
+Chart.defaults.scale.ticks.fontSize = 12
+Chart.defaults.scale.ticks.fontColor = '#71748c'
+Chart.defaults.scale.ticks.beginAtZero = false
+Chart.defaults.scale.ticks.padding = 10
+
+// Elements globals
+Chart.defaults.global.elements.point.radius = 0
+
+// Responsivess
+Chart.defaults.global.responsive = true
+Chart.defaults.global.maintainAspectRatio = false
+
+// The bar chart
+var myChart = new Chart(document.getElementById('myChart'), {
+  type: 'bar',
+  data: {
+    labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
+    datasets: [{
+      label: "Lost",
+      data: [45, 25, 40, 20, 60, 20, 35, 25],
+      backgroundColor: "#0d6efd",
+      borderColor: 'transparent',
+      borderWidth: 2.5,
+      barPercentage: 0.4,
+    }, {
+      label: "Succes",
+      startAngle: 2,
+      data: [20, 40, 20, 50, 25, 40, 25, 10],
+      backgroundColor: "#dc3545",
+      borderColor: 'transparent',
+      borderWidth: 2.5,
+      barPercentage: 0.4,
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {},
+        ticks: {
+          stepSize: 15,
+        },
+      }],
+      xAxes: [{
+        gridLines: {
+          display: false,
+        }
+      }]
+    }
+  }
+})
+
+// The line chart
+var chart = new Chart(document.getElementById('myChart2'), {
+  type: 'line',
+  data: {
+    labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
+    datasets: [{
+      label: "My First dataset",
+      data: [4, 20, 5, 20, 5, 25, 9, 18],
+      backgroundColor: 'transparent',
+      borderColor: '#0d6efd',
+      lineTension: .4,
+      borderWidth: 1.5,
+    }, {
+      label: "Month",
+      data: [11, 25, 10, 25, 10, 30, 14, 23],
+      backgroundColor: 'transparent',
+      borderColor: '#dc3545',
+      lineTension: .4,
+      borderWidth: 1.5,
+    }, {
+      label: "Month",
+      data: [16, 30, 16, 30, 16, 36, 21, 35],
+      backgroundColor: 'transparent',
+      borderColor: '#f0ad4e',
+      lineTension: .4,
+      borderWidth: 1.5,
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          drawBorder: false
+        },
+        ticks: {
+          stepSize: 12,
+        }
+      }],
+      xAxes: [{
+        gridLines: {
+          display: false,
+        },
+      }]
+    }
+  }
+})
+
+var chart = document.getElementById('chart3');
+var myChart = new Chart(chart, {
+  type: 'line',
+  data: {
+    labels: ["One", "Two", "Three", "Four", "Five", 'Six', "Seven", "Eight"],
+    datasets: [{
+      label: "Lost",
+      lineTension: 0.2,
+      borderColor: '#d9534f',
+      borderWidth: 1.5,
+      showLine: true,
+      data: [3, 30, 16, 30, 16, 36, 21, 40, 20, 30],
+      backgroundColor: 'transparent'
+    }, {
+      label: "Lost",
+      lineTension: 0.2,
+      borderColor: '#5cb85c',
+      borderWidth: 1.5,
+      data: [6, 20, 5, 20, 5, 25, 9, 18, 20, 15],
+      backgroundColor: 'transparent'
+    },
+               {
+                 label: "Lost",
+                 lineTension: 0.2,
+                 borderColor: '#f0ad4e',
+                 borderWidth: 1.5,
+                 data: [12, 20, 15, 20, 5, 35, 10, 15, 35, 25],
+                 backgroundColor: 'transparent'
+               },
+               {
+                 label: "Lost",
+                 lineTension: 0.2,
+                 borderColor: '#337ab7',
+                 borderWidth: 1.5,
+                 data: [16, 25, 10, 25, 10, 30, 14, 23, 14, 29],
+                 backgroundColor: 'transparent'
+               }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          drawBorder: false
+        },
+        ticks: {
+          stepSize: 12
+        }
+      }],
+      xAxes: [{
+        gridLines: {
+          display: false,
+        },
+      }],
+    }
+  }
+})
+
+</script>
+ 
+
+
+
+
+
+
+
+  <h2 class="nuevo-producto text-left">Nuevos Productos.</h2>
+
+
+  <!--CARRUSEL BONITO-->
+
+
+  <div class="ag-container-shops">
+    <div class="js-flickity-slider">
+
+
+      <div class="js-carousel-cell">
+        <div class="ag-shop-card_box-wrap">
+          <div class="ag-shop-card_box">
+            <div class="ag-shop-card_body">
+              <div class="js-card-bg ag-card-bg"><i><img src="imagenes/flores-1.png" alt=""></i></div>
+              <a href="#" class="ag-shop-card-body_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/5cd3905e11943.png"
+                  alt="Falu" class="ag-shop-card-body_img"></a>
+            </div>
+            <div class="ag-shop-card_footer">
+              <a href="#" class="ag-shop-card-footer_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/arrow.svg"
+                  class="ag-shop-card-footer_arrow"></a>
+              <span class="ag-shop-card-footer_title">syugrfuwg</span>
+              <span class="ag-shop-card-footer_products">rwhugdewyfyet</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="js-carousel-cell">
+        <div class="ag-shop-card_box-wrap">
+          <div class="ag-shop-card_box">
+            <div class="ag-shop-card_body">
+              <div class="js-card-bg ag-card-bg"><i><img src="imagenes/flores-2.png" alt=""></i></div>
+              <a href="#" class="ag-shop-card-body_link"><img src="imagenes/PRUEBA-1.jpg" alt="Falu"
+                  class="ag-shop-card-body_img"></a>
+            </div>
+            <div class="ag-shop-card_footer">
+              <a href="#" class="ag-shop-card-footer_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/arrow.svg"
+                  class="ag-shop-card-footer_arrow"></a>
+              <span class="ag-shop-card-footer_title">gwyfeuwgf</span>
+              <span class="ag-shop-card-footer_products">wehgufygwugefe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="js-carousel-cell">
+        <div class="ag-shop-card_box-wrap">
+          <div class="ag-shop-card_box">
+            <div class="ag-shop-card_body">
+              <div class="js-card-bg ag-card-bg"><i><img src="imagenes/mano.png" alt=""></i></div>
+              <a href="#" class="ag-shop-card-body_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/5c40096210546.png"
+                  alt="Falu" class="ag-shop-card-body_img"></a>
+            </div>
+            <div class="ag-shop-card_footer">
+              <a href="#" class="ag-shop-card-footer_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/arrow.svg"
+                  class="ag-shop-card-footer_arrow"></a>
+              <span class="ag-shop-card-footer_title">whiugfiunw</span>
+              <span class="ag-shop-card-footer_products">wruygfcuw</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="js-carousel-cell">
+        <div class="ag-shop-card_box-wrap">
+          <div class="ag-shop-card_box">
+            <div class="ag-shop-card_body">
+              <div class="js-card-bg ag-card-bg"><i><img src="imagenes/pexels-min-an-906150.jpg" alt=""></i></div>
+              <a href="#" class="ag-shop-card-body_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/5ce7f5360446f.png"
+                  alt="Falu" class="ag-shop-card-body_img"></a>
+            </div>
+            <div class="ag-shop-card_footer">
+              <a href="#" class="ag-shop-card-footer_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/arrow.svg"
+                  class="ag-shop-card-footer_arrow"></a>
+              <span class="ag-shop-card-footer_title">efuygwfygw</span> <span
+                class="ag-shop-card-footer_products">fywgfiuw</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="js-carousel-cell">
+        <div class="ag-shop-card_box-wrap">
+          <div class="ag-shop-card_box">
+            <div class="ag-shop-card_body">
+              <div class="js-card-bg ag-card-bg"><i><img src="imagenes/mano.png" alt=""></i></div>
+              <a href="#" class="ag-shop-card-body_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/5be47ff15177a.png"
+                  alt="Falu" class="ag-shop-card-body_img"></a>
+            </div>
+            <div class="ag-shop-card_footer">
+              <a href="#" class="ag-shop-card-footer_link"><img
+                  src="https://rawcdn.githack.com/SochavaAG/example-mycode/master/pens/parallax-swipe/images/arrow.svg"
+                  class="ag-shop-card-footer_arrow"></a>
+              <span class="ag-shop-card-footer_title">euibalermk</span>
+              <span class="ag-shop-card-footer_products">wrfuwy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="ver-mas-boton">
+    <button class="boton-ver-mas"><img src="imagenes/right-chevron.png" alt="">Ver más</button>
+  </div>
+
+
+  <!--PRODUCTOS PERSONALIZADOS-->
+
+
+
+
+
+
+
+  <!--PORTAFOLIO-->
+  
+    <div class="section-2 col-12 col-md-12 col-sm-12 .col-lg-12">
+      <!--ESTE ES EL CODIGO DEL PORTAFOLIO-->
+      <div class="portafolio-contenedor">
+        <header>
+          <div class="portafolio-logo">
+            <h2>ODALIS ALVAREZ</h2>
+            <P>Diseño web</P>
+            <form action="">
+              <input type="text" class="barra-busqueda-portafolio" id="barra-busqueda-portafolio" placeholder="buscar">
+            </form>
+            <div class="categorias-portafolio" id="categorias-portafolio">
+              <a href="#" class="activo">Todos</a>
+              <a href="#">Odalis</a>
+              <a href="#">Juve</a>
+              <a href="#">Gatito</a>
+              <a href="#">Panda</a>
+            </div>
+        </header>
+        <section class="grid images" id="grid">
+          <div class="item" data-categoria="odalis" data-etiquetas="Juve sexy autos calles"
+            data-descripcion="1-hola,es un gusto">
+            <div class="item-contenido">
+              <img src="imagenes/ciudad1.png" alt="">
+            </div>
+          </div>
+
+          <div class="item" data-categoria="juve" data-etiquetas="persona cabello"
+            data-descripcion="1-hola,es un gusto">
+            <div class="item-contenido">
+              <img src="imagenes/persona1.png" alt="">
+            </div>
+          </div>
+
+          <div class="item" data-categoria="gatito" data-etiquetas="animal pelaje"
+            data-descripcion="1-hola,es un gusto">
+            <div class="item-contenido">
+              <img src="imagenes/animal1.png" alt="">
+            </div>
+          </div>
+
+          <div class="item" data-categoria="panda" data-etiquetas="rio lagos paisajes"
+            data-descripcion="1-hola,es un gusto">
+            <div class="item-contenido">
+              <img src="imagenes/paisaje1.png" alt="">
+            </div>
+          </div>
+
+
+        </section>
+
+        <!--ventana emergente-->
+
+        <section class="emergente " id="emergente">
+          <div class="contenedor-img">
+            <button id="btn-cerrar-popup"><i class="fas fa-times"></i></button>
+            <img src="" alt="">
+          </div>
+          <p class="descripcion"></p>
+        </section>
+      </div>
+   
+
+
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web-animations-js@2.3.2/web-animations.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js"></script>
+  <script>
+    const grid = new Muuri('.grid', {
+      layout: {
+        rounding: false
+      }
+    });
+
+    window.addEventListener('load', () => {
+      grid.refreshItems().layout();
+      document.getElementById('grid').classList.add('imagenes-cargadas');
+
+      //Agregue los listener de los enlaces para filtrar por categoria.
+      const enlaces = document.querySelectorAll('#categorias-portafolio a');
+      enlaces.forEach((elemento) => {
+        elemento.addEventListener('click', (evento) => {
+          evento.preventDefault();
+          enlaces.forEach((enlace) => enlace.classList.remove('activo'));
+          evento.target.classList.add('activo');
+
+          const categoria = evento.target.innerHTML.toLowerCase();
+          categoria === 'todos' ? grid.filter('[data-categoria]') : grid.filter(`[data-categoria="${categoria}"]`);
+        });
+      });
+
+      //Agregue el listener para la barra de busqueda.
+      document.querySelector('#barra-busqueda-portafolio').addEventListener('input', (evento) => {
+        const busqueda = evento.target.value;
+        grid.filter((item) => item.getElement().dataset.etiquetas.includes(busqueda));
+      });
+
+      //agregue listener para las imagenes.
+
+      const emergente = document.getElementById('emergente');
+      document.querySelectorAll('.grid .item img').forEach((elemento) => {
+
+
+        elemento.addEventListener('click', () => {
+          const ruta = elemento.getAttribute('src');
+          const descripcion = elemento.parentNode.parentNode.dataset.descripcion;
+
+          emergente.classList.add('activo');
+          document.querySelector('#emergente img').src = ruta;
+          document.querySelector('#emergente .descripcion').innerHTML = descripcion;
+        });
+      });
+
+      //eventlistener del boton cerrar.
+      document.querySelector('#btn-cerrar-popup').addEventListener('click', () => {
+        emergente.classList.remove('activo');
+      });
+
+      emergente.addEventListener('click', () => {
+        evento.target.id === 'emergente' ? emergente.classList.remove('activo') : '';
+      });
+
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- BOOTSTRAP JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
+  <script src="js/particles.js"></script>
+  <script src="js/particulas.js"></script>
+  <script src="js/lightslider.js"></script>
+  <link rel="stylesheet" href="css/lightslider.css">
+  <script src="js/index.js"></script>
+
+
+
+
+
+
+  <script src="js/flickity.pkgd.min.js"></script>
+
+
+
+
+  <script>
+    (function ($) {
+      $(function () {
+
+        var agSlideFlickity = $('.js-flickity-slider').flickity({
+          autoPlay: 2000,
+          imagesLoaded: true,
+          percentPosition: false,
+          prevNextButtons: false,
+          initialIndex: 5,
+          pageDots: false,
+          groupCells: 1
+        });
+
+        var agCard = agSlideFlickity.find('.js-carousel-cell .js-card-bg'),
+          agTransform = 'string' == typeof document.documentElement.style.transform ? 'transform' : 'WebkitTransform',
+          agSlide = agSlideFlickity.data('flickity');
+
+
+
+        setInterval(function () {
+          agSlideFlickity.on('scroll.flickity', function () {
+            agSlide.slides.forEach(function (t, e) {
+              var n = agCard[e],
+                i = -1 * (t.target + agSlide.x) / 3;
+
+              n.style[agTransform] = 'translateX(' + i + 'px)';
+            });
+          });
+        }, 2000);
+
+        agSlideFlickity.on('dragStart.flickity', function (t, e) {
+          document.ontouchmove = function (t) {
+            t.preventDefault();
+          }
+        });
+
+        agSlideFlickity.on('dragEnd.flickity', function (t, e) {
+          document.ontouchmove = function (t) {
+            return true;
+          }
+        });
+
+      });
+    })(jQuery);
+  </script>
+
+
+  <script>
+    /**
+   * @Titulo: Slider Responsivo
+   * @Autor: Creaticode
+   * @URL: http://creaticode.com 
+   */
+    $(function () {
+      /** -----------------------------------------
+       * Modulo del Slider 
+       -------------------------------------------*/
+      var SliderModule = (function () {
+        var pb = {};
+        pb.el = $('#slider');
+        pb.items = {
+          panels: pb.el.find('.slider-wrapper > li'),
+        }
+
+        // Interval del Slider
+        var SliderInterval,
+          currentSlider = 0,
+          nextSlider = 1,
+          lengthSlider = pb.items.panels.length;
+
+        // Constructor del Slider
+        pb.init = function (settings) {
+          this.settings = settings || { duration: 8000 };
+          var items = this.items,
+            lengthPanels = items.panels.length,
+            output = '';
+
+          // Insertamos nuestros botones
+          for (var i = 0; i < lengthPanels; i++) {
+            if (i == 0) {
+              output += '<li class="active"></li>';
+            } else {
+              output += '<li></li>';
+            }
+          }
+
+          $('#control-buttons').html(output);
+
+          // Activamos nuestro Slider
+          activateSlider();
+          // Eventos para los controles
+          $('#control-buttons').on('click', 'li', function (e) {
+            var $this = $(this);
+            if (!(currentSlider === $this.index())) {
+              changePanel($this.index());
+            }
+          });
+
+        }
+
+        // Funcion para activar el Slider
+        var activateSlider = function () {
+          SliderInterval = setInterval(pb.startSlider, pb.settings.duration);
+        }
+
+        // Funcion para la Animacion
+        pb.startSlider = function () {
+          var items = pb.items,
+            controls = $('#control-buttons li');
+          // Comprobamos si es el ultimo panel para reiniciar el conteo
+          if (nextSlider >= lengthSlider) {
+            nextSlider = 0;
+            currentSlider = lengthSlider - 1;
+          }
+
+          controls.removeClass('active').eq(nextSlider).addClass('active');
+          items.panels.eq(currentSlider).fadeOut('slow');
+          items.panels.eq(nextSlider).fadeIn('slow');
+
+          // Actualizamos los datos del slider
+          currentSlider = nextSlider;
+          nextSlider += 1;
+        }
+
+        // Funcion para Cambiar de Panel con Los Controles
+        var changePanel = function (id) {
+          clearInterval(SliderInterval);
+          var items = pb.items,
+            controls = $('#control-buttons li');
+          // Comprobamos si el ID esta disponible entre los paneles
+          if (id >= lengthSlider) {
+            id = 0;
+          } else if (id < 0) {
+            id = lengthSlider - 1;
+          }
+
+          controls.removeClass('active').eq(id).addClass('active');
+          items.panels.eq(currentSlider).fadeOut('slow');
+          items.panels.eq(id).fadeIn('slow');
+
+          // Volvemos a actualizar los datos del slider
+          currentSlider = id;
+          nextSlider = id + 1;
+          // Reactivamos nuestro slider
+          activateSlider();
+        }
+
+        return pb;
+      }());
+
+      SliderModule.init({ duration: 4000 });
+
+    });
+  </script>
+
+
+
+</body>
+
+</html>
